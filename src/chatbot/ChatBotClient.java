@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
+    Rename functions to be more accurate
     Consider if user doesn't have certain data in the Settings
 
     Consider an interface for Places for Place Classes
