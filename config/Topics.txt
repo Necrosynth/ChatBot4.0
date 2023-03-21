@@ -53,7 +53,7 @@ Leet
 1337
 
 Barney Song
-l love you, you love me
+l_love you, you love me
 We're a_happy family
 With a_great big hug, and a_kiss from me to you
 Won't you say you love me too?
@@ -70,3 +70,6 @@ Cheeze.. 🧀
 
 Listening
 R U Listening 2 Me?
+
+Later
+Smell ya later!

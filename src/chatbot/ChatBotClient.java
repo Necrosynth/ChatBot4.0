@@ -1,8 +1,6 @@
 package chatbot;
 
-import data.Place;
 import data.Settings;
-import data.TopicData;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -12,8 +10,8 @@ import java.util.List;
 /*
     ToDo:
     Consider if user doesn't have certain data in the Settings
-    Consider an interface for Places for Place Classes
 
+    Consider an interface for Places for Place Classes
     Kill Open Program after leaving Topic Menu
  */
 

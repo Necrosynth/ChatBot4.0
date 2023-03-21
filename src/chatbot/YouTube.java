@@ -72,19 +72,19 @@ public class YouTube {
             //return;
 
             //If the size of total messages is less than the YouTube Timeout
-        if (msgs.size() < YouTube.getYTChatTimeout()) {
+        if (msgs.size() < getYTChatTimeout()) {
             for (int i = 0; i < msgs.size(); i++) {
                 Location.pasteToChat(msgs.get(i), YouTube.getYTFastMsgDelay());
             }
             //If the size of total messages is greater than or equal to the YouTube Timeout between messages
-        } else if (msgs.size() >= YouTube.getYTChatTimeout()) {
+        } else if (msgs.size() >= getYTChatTimeout()) {
             //Say messages up to the Youtube Timeout
-            for (int i = 0; i < (YouTube.getYTChatTimeout()); i++) {
+            for (int i = 0; i < getYTChatTimeout(); i++) {
                 Location.pasteToChat(msgs.get(i), YouTube.getYTFastMsgDelay());
             }
 
             //Then slow down a bit for the Timeout between messages
-            for (int i = (YouTube.getYTChatTimeout() + 1); i < msgs.size(); i++) {
+            for (int i = getYTChatTimeout(); i < msgs.size(); i++) {
                 Location.pasteToChat(msgs.get(i), YouTube.getYTSlowMsgDelay());
             }
         }
