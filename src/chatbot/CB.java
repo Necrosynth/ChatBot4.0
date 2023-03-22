@@ -1,7 +1,8 @@
 package chatbot;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.List;
 
 public class CB {
 
@@ -41,7 +42,8 @@ public class CB {
     public static void newCBChatTopic(String topicName) throws AWTException {
         //Robot robot = new Robot();
         //robot.delay(5000);
-        ArrayList<String> msgs = Conversation.getTopicDictionary().get(topicName);
+        Dictionary<String, List<String>> tempDictionary = Conversation.getTopicDictionary();
+        List<String> msgs = tempDictionary.get(topicName);
 
         if (msgs.size() < 3){
             for (String msg : msgs) {

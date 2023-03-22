@@ -9,7 +9,6 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
-    Rename functions to be more accurate
     Consider if user doesn't have certain data in the Settings
 
     Consider an interface for Places for Place Classes
@@ -21,10 +20,8 @@ public class ChatBotClient {
     //Loads all prerequisite data
     //(Initializes all the data that is needed for program to function)
     private static void loadData() throws FileNotFoundException {/// IS THIS A GOOD IDEA???
-        Settings.loadCustomSettings();//Run all the init in one command??ss
-        Conversation.buildListOfTopicsAndMsgs();//All init in one command???
-        Conversation.buildTopicDictionary();// all init in one command???
-        Conversation.buildListOfTopicNames();// all init in one command???
+        Settings.loadCustomSettings();//Run all the init in one command??
+        Conversation.buildTopicDictionary();
     }
 
     //Allows user to choose a Topic
@@ -32,6 +29,7 @@ public class ChatBotClient {
         //Choose a Topic Menu
         String userTopic = "Waiting";
         do {
+            //Conversation.printOutTopicNames();
             Conversation.printOutTopicNames();
 
             //Get input
@@ -46,7 +44,7 @@ public class ChatBotClient {
 
     //Sends msg to a given Place
     private static void sendMsgToPlace(String userTopic) throws IOException, AWTException {
-        List<String> tempTopicNames = Conversation.getTopicNamesList();
+        List<String> tempTopicNames = Conversation.getTopicNameList();
         //If the chosen Topic was a valid name
         if (tempTopicNames.contains(userTopic)) {
             Place currentPlace = Location.getCurrentPlace();
@@ -136,27 +134,12 @@ public class ChatBotClient {
             System.out.println();
 
             Location.convertStringToPlace(placeToChat);
-            switch (Location.getCurrentPlace()) {
-                case NONE:
-                    break;
-
-                case YOUTUBE:
-                    chooseATopic();
-                    break;
-
-                case CB:
-                    chooseATopic();
-                    break;
-
-                case DISCORD:
-                    chooseATopic();
-                    break;
-
-                default:
-                    System.out.println("Invalid Command for Place to Chat");
-                    System.out.println();
-                    break;
-            }
+            Place tempCurrentPlace = Location.getCurrentPlace();
+            boolean isValidPlace = tempCurrentPlace == Place.YOUTUBE || tempCurrentPlace == Place.CB || tempCurrentPlace == Place.DISCORD;
+            if(isValidPlace)
+                chooseATopic();
+            else
+                System.out.println("Error: Invalid Place");
 
         } while (!placeToChat.equals(""));
     }

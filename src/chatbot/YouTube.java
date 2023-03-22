@@ -1,6 +1,6 @@
 package chatbot;
 
-import java.io.IOException;
+import java.util.Dictionary;
 import java.util.List;
 
 public class YouTube {
@@ -64,9 +64,11 @@ public class YouTube {
 
     //Sends a given msg to a Youtube Livestream
     public static void newYTBotTopic(String topicName) {
+        Dictionary<String, List<String>> tempDictionary = Conversation.getTopicDictionary();
+        List<String> msgs = tempDictionary.get(topicName);
 
         //Get messages from dictionary for Topic Name
-        List<String> msgs = Conversation.getTopicDictionary().get(topicName);
+        /////List<String> msgs = Conversation.getTopicDictionary().get(topicName);
 
         //if (msgs.size() == 0)
             //return;
