@@ -18,8 +18,8 @@ Happy Birthday to You!
 Hello
 Hello! How are you?
 
-Fibonacci
-Fib:
+Fib
+Fibonacci:
 0
 1
 1
@@ -97,7 +97,7 @@ With a_great big hug, and a_kiss from me to you
 Won't you say you love me too?
 
 Noob
-I can smell a noob from a mile away!!1
+I can smell _a noob from a mile away!!1
 
 Cheese
 Cheeze.. 🧀

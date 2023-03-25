@@ -10,10 +10,18 @@ public class Settings {
     //Location on computer of the custom Settings text file
     private static final String SETTINGS_FILE_NAME = "config\\Settings.txt";
 
+    private static boolean isCommandValid(){
+
+
+        return false;
+    }
+
     //Handles loading the Custom Settings into the program
     public static void loadCustomSettings() throws FileNotFoundException {
         //Get all data from the Settings file
         Scanner inputData = new Scanner(new File(SETTINGS_FILE_NAME));
+
+        //Data is already valid
         try {
             while (inputData.hasNextLine()) { //Runs loop while there's more data to process
                 while(inputData.hasNext()){
@@ -24,16 +32,21 @@ public class Settings {
                             String browserLocation = inputData.nextLine();
                             Location.setBrowserLocation(browserLocation);
                             break;
+
                         case "DISCORD_LOCATION:":
                             String discordLocation = inputData.nextLine();
                             Location.setDiscordLocation(discordLocation);
                             break;
+
                         case "YOUTUBE_LIVESTREAM_URL:":
                             String ytLivestreamURL = inputData.nextLine();
                             Location.setYTLiveURL(ytLivestreamURL);
                             break;
+
                         default:
-                            ///
+                            //ERROR: Invalid data
+                            throw new RuntimeException();
+                            /////
                     }
                 }
             }
@@ -41,9 +54,5 @@ public class Settings {
             //Close whether or not there's File Error
             inputData.close();
         }
-    }
-
-    public static String getSettingsFileName() {
-        return SETTINGS_FILE_NAME;
     }
 }

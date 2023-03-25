@@ -1,6 +1,9 @@
 package chatbot;
 
-import data.Settings;
+import chatbot.places.CB;
+import chatbot.places.Discord;
+import chatbot.places.YouTube;
+import config.Settings;
 
 import java.awt.*;
 import java.io.FileNotFoundException;
@@ -9,7 +12,15 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
-    Consider if user doesn't have certain data in the Settings
+    Break up /chatbot for Places
+    Fix ERROR: Invalid Place
+
+
+    Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
+    Consider if user messes up Topics file
+
+    Think of different modes bot can run in.
+    Think of better way of organizing packages and classes
 
     Consider an interface for Places for Place Classes
     Kill Open Program after leaving Topic Menu
@@ -19,8 +30,8 @@ import java.util.List;
 public class ChatBotClient {
     //Loads all prerequisite data
     //(Initializes all the data that is needed for program to function)
-    private static void loadData() throws FileNotFoundException {/// IS THIS A GOOD IDEA???
-        Settings.loadCustomSettings();//Run all the init in one command??
+    private static void loadData() throws FileNotFoundException {
+        Settings.loadCustomSettings();
         Conversation.buildTopicDictionary();
     }
 
@@ -29,7 +40,6 @@ public class ChatBotClient {
         //Choose a Topic Menu
         String userTopic = "Waiting";
         do {
-            //Conversation.printOutTopicNames();
             Conversation.printOutTopicNames();
 
             //Get input
@@ -60,6 +70,8 @@ public class ChatBotClient {
                     YouTube.newYTBotTopic(userTopic);
                 } else if (currentPlace.equals(Place.DISCORD)){
                     Discord.newDiscordBotTopic(userTopic);
+                } else if (currentPlace.equals(Place.CB)){
+                    CB.newCBChatTopic(userTopic);
                 }
             }
 

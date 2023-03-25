@@ -1,4 +1,7 @@
-package chatbot;
+package chatbot.places;
+
+import chatbot.Conversation;
+import chatbot.Location;
 
 import java.util.List;
 
@@ -48,13 +51,6 @@ public class Discord {
     }
     public static int getDirectMsgChatY() {
         return directMsgChatY;
-    }
-
-    public static int getFastChatDelay() {
-        return fastChatDelay;
-    }
-    public static int getSlowChatDelay() {
-        return slowChatDelay;
     }
 
     public static int getFastClickDelay() {

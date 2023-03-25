@@ -1,4 +1,7 @@
-package chatbot;
+package chatbot.places;
+
+import chatbot.Conversation;
+import chatbot.Location;
 
 import java.util.Dictionary;
 import java.util.List;
@@ -66,18 +69,11 @@ public class YouTube {
     public static void newYTBotTopic(String topicName) {
         Dictionary<String, List<String>> tempDictionary = Conversation.getTopicDictionary();
         List<String> msgs = tempDictionary.get(topicName);
-
-        //Get messages from dictionary for Topic Name
-        /////List<String> msgs = Conversation.getTopicDictionary().get(topicName);
-
-        //if (msgs.size() == 0)
-            //return;
-
-            //If the size of total messages is less than the YouTube Timeout
         if (msgs.size() < getYTChatTimeout()) {
             for (int i = 0; i < msgs.size(); i++) {
                 Location.pasteToChat(msgs.get(i), YouTube.getYTFastMsgDelay());
             }
+
             //If the size of total messages is greater than or equal to the YouTube Timeout between messages
         } else if (msgs.size() >= getYTChatTimeout()) {
             //Say messages up to the Youtube Timeout

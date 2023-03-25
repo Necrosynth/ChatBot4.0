@@ -8,26 +8,16 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Location {
-    //Location of the user's browser
     private static String browserLocation = "";
-
-    //Where Discord is located on computer
     private static String discordLocation = "";
-
-    //URL to a Youtube Livestream
     private static String ytLiveURL = "";
-
-    //The place the bot is currently chatting in
     private static Place currentPlace = Place.NONE;
 
-    //Setup where the browser is located
+    //Whether or not a program has already been opened from here
+    private static boolean programIsOpen = false;
+
     public static void setBrowserLocation(String newBrowserLocation){
         browserLocation = newBrowserLocation;
-    }
-
-    //Get location of browser
-    public static String getBrowserLocation() {
-        return browserLocation;
     }
 
     public static void setDiscordLocation(String newDiscordLocation) {
@@ -40,13 +30,9 @@ public class Location {
     public static void setYTLiveURL(String ytLiveURL) {
         Location.ytLiveURL = ytLiveURL;
     }
-
     public static String getYTLiveURL() {
         return ytLiveURL;
     }
-
-    //Whether or not a program has already been opened from here
-    private static boolean programIsOpen = false;
 
     //Checks if Program is Open
     public static boolean isProgramOpen() {
@@ -60,10 +46,6 @@ public class Location {
 
     public static Place getCurrentPlace() {
         return currentPlace;
-    }
-
-    public static void setCurrentPlace(Place currentPlace) {
-        currentPlace = currentPlace;
     }
 
     //Set up the Place enum based on user input
@@ -169,6 +151,7 @@ public class Location {
     }
     //
 
+    /*
     //Does a delay for delayTime (in milliseconds)
     public static void delayAndShowCountdown(int delayTime){
         final int MICRO_SECOND = 1000;
@@ -178,6 +161,7 @@ public class Location {
             robot.delay(MICRO_SECOND);
         }
     }
+     */
     //
 
     //Navigate to the URL and click the Chat Box
