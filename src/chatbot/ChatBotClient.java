@@ -12,17 +12,17 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
-    Break up /chatbot for Places
-    Fix ERROR: Invalid Place
+    Consider an interface for Places for Place Classes
+    How to keep Config Files outside of the jar when compiling
+    How to compile this into a Jar File
+    Names of topics are out of order..
 
-
+    Consider different Topic files for particular different Subjects/Places
     Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
     Consider if user messes up Topics file
 
     Think of different modes bot can run in.
-    Think of better way of organizing packages and classes
 
-    Consider an interface for Places for Place Classes
     Kill Open Program after leaving Topic Menu
  */
 
@@ -149,7 +149,9 @@ public class ChatBotClient {
             Place tempCurrentPlace = Location.getCurrentPlace();
             boolean isValidPlace = tempCurrentPlace == Place.YOUTUBE || tempCurrentPlace == Place.CB || tempCurrentPlace == Place.DISCORD;
             if(isValidPlace)
-                chooseATopic();
+                chooseATopic(); //Let user choose a Topic Name
+            else if(tempCurrentPlace.equals(Place.NONE))
+                break;
             else
                 System.out.println("Error: Invalid Place");
 
