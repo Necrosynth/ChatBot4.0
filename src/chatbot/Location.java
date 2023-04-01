@@ -1,5 +1,7 @@
 package chatbot;
 
+import chatbot.places.Place;
+
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -8,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 public class Location {
+    public static Process myProcess = null;
     private static String browserLocation = "";
     private static String discordLocation = "";
     private static String ytLiveURL = "";
@@ -172,7 +175,7 @@ public class Location {
         String BROWSER_LOCATION = new String(browserLocation);
 
         //Run Firefox
-        RUNTIME.exec(BROWSER_LOCATION);
+        myProcess = RUNTIME.exec(BROWSER_LOCATION);
 
         selectAddressBar();
         urlToAddress(URL);

@@ -11,8 +11,6 @@ public class Settings {
     private static final String SETTINGS_FILE_NAME = "config\\Settings.txt";
 
     private static boolean isCommandValid(){
-
-
         return false;
     }
 

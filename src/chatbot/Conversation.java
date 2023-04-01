@@ -56,6 +56,7 @@ public class Conversation {
     public static void printOutTopicNames(){
         Enumeration<String> tempNamesEnumeration = topicDictionary.keys();
         List<String> tempTopicNamesList = Collections.list(tempNamesEnumeration);
+        //tempTopicNamesList.sort(new myCompare());
         System.out.print("Names of Topics: [" + tempTopicNamesList.get(0) + ", ");
         for (int i = 1; i < tempTopicNamesList.size(); i++) {
             if (i < (tempTopicNamesList.size() - 1))

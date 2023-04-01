@@ -2,6 +2,7 @@ package chatbot;
 
 import chatbot.places.CB;
 import chatbot.places.Discord;
+import chatbot.places.Place;
 import chatbot.places.YouTube;
 import config.Settings;
 
@@ -13,9 +14,11 @@ import java.util.List;
 /*
     ToDo:
     Consider an interface for Places for Place Classes
+
     How to keep Config Files outside of the jar when compiling
     How to compile this into a Jar File
     Names of topics are out of order..
+
 
     Consider different Topic files for particular different Subjects/Places
     Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
@@ -33,6 +36,35 @@ public class ChatBotClient {
     private static void loadData() throws FileNotFoundException {
         Settings.loadCustomSettings();
         Conversation.buildTopicDictionary();
+    }
+
+    //Main menu system for bot
+    //Choose a Place to chat, first
+    private static void runMainLoop() throws IOException, AWTException {
+        System.out.println("Welcome to the Chat Bot.");
+        Scanner console = new Scanner(System.in);
+        //Place to Chat Menu
+        String placeToChat = "Waiting";
+        do {
+            System.out.println("Where do you want to chat?");
+            System.out.println("Places to chat: [Youtube, Discord]");
+            System.out.print("Choose a Place (Enter to Exit): ");
+            placeToChat = console.nextLine();
+            System.out.println();
+
+            Location.convertStringToPlace(placeToChat);
+            Place tempCurrentPlace = Location.getCurrentPlace();
+            boolean isValidPlace = tempCurrentPlace == Place.YOUTUBE || tempCurrentPlace == Place.CB || tempCurrentPlace == Place.DISCORD;
+            if(isValidPlace)
+                chooseATopic(); //Let user choose a Topic Name
+            else if(tempCurrentPlace.equals(Place.NONE))
+                break;
+            else
+                System.out.println("Error: Invalid Place");
+
+        } while (!placeToChat.equals(""));
+
+        Location.myProcess.destroy(); //Taskkill LOOK UP
     }
 
     //Allows user to choose a Topic
@@ -129,32 +161,26 @@ public class ChatBotClient {
         Discord.newDiscordBotTopic(userTopic);
     }
 
+    /*
+    //Automatic Mode for random bot messages
+    private static void autoMode(int chatTimeout){
+        List<String> randomTopicList = Conversation.getTopicNameList();
+        Random random = new Random();
+        int randomTopicIndex = random.nextInt(0, randomTopicList.size());
+
+        for ()
+    }
+    */
+
     //Start main
     public static void main(String[] args) throws IOException, AWTException {
         //Initialize data that is needed for program to function
         loadData();
 
-        System.out.println("Welcome to the Chat Bot.");
-        Scanner console = new Scanner(System.in);
-        //Place to Chat Menu
-        String placeToChat = "Waiting";
-        do {
-            System.out.println("Where do you want to chat?");
-            System.out.println("Places to chat: [Youtube, Discord]");
-            System.out.print("Choose a Place (Enter to Exit): ");
-            placeToChat = console.nextLine();
-            System.out.println();
+        //Run Main Menu
+        runMainLoop();
 
-            Location.convertStringToPlace(placeToChat);
-            Place tempCurrentPlace = Location.getCurrentPlace();
-            boolean isValidPlace = tempCurrentPlace == Place.YOUTUBE || tempCurrentPlace == Place.CB || tempCurrentPlace == Place.DISCORD;
-            if(isValidPlace)
-                chooseATopic(); //Let user choose a Topic Name
-            else if(tempCurrentPlace.equals(Place.NONE))
-                break;
-            else
-                System.out.println("Error: Invalid Place");
-
-        } while (!placeToChat.equals(""));
+        //////FIX THIS
+        Location.myProcess.destroy(); //Taskkill LOOK UP
     }
 }
