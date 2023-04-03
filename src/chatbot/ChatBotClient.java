@@ -13,12 +13,12 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
-    Consider an interface for Places for Place Classes
 
     How to keep Config Files outside of the jar when compiling
     How to compile this into a Jar File
     Names of topics are out of order..
 
+    WHERE to define the Initialize Data function
 
     Consider different Topic files for particular different Subjects/Places
     Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
@@ -181,6 +181,8 @@ public class ChatBotClient {
         runMainLoop();
 
         //////FIX THIS
-        Location.myProcess.destroy(); //Taskkill LOOK UP
+        //
+        //
+        // Location.myProcess.destroy(); //Taskkill LOOK UP
     }
 }
