@@ -13,9 +13,6 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
-
-    How to keep Config Files outside of the jar when compiling
-    How to compile this into a Jar File
     Names of topics are out of order..
 
     WHERE to define the Initialize Data function
@@ -24,9 +21,9 @@ import java.util.List;
     Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
     Consider if user messes up Topics file
 
-    Think of different modes bot can run in.
+    Different Bot Modes: Auto Topics, Random Sentences
 
-    Kill Open Program after leaving Topic Menu
+    Kill Open Browser after leaving Topic Menu
  */
 
 //Client for ChatBot
@@ -64,7 +61,9 @@ public class ChatBotClient {
 
         } while (!placeToChat.equals(""));
 
-        Location.myProcess.destroy(); //Taskkill LOOK UP
+        Location.myProcess.destroy();
+        /////////////////////////////
+        // Taskkill LOOK UP
     }
 
     //Allows user to choose a Topic
@@ -181,8 +180,7 @@ public class ChatBotClient {
         runMainLoop();
 
         //////FIX THIS
+        // Location.myProcess.destroy(); //Taskkill LOOK UP ///////////////
         //
-        //
-        // Location.myProcess.destroy(); //Taskkill LOOK UP
     }
 }

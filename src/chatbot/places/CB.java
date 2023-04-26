@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CB {
 
-    private static int cbXToClick = 1200;
+    private static int cbXToClick = 1152;
     private static int cbYToClick = 845;
     private static int cbClickDelay = 500;
 

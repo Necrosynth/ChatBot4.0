@@ -10,9 +10,11 @@ public class Settings {
     //Location on computer of the custom Settings text file
     private static final String SETTINGS_FILE_NAME = "config\\Settings.txt";
 
+    /*
     private static boolean isCommandValid(){
         return false;
     }
+     */
 
     //Handles loading the Custom Settings into the program
     public static void loadCustomSettings() throws FileNotFoundException {

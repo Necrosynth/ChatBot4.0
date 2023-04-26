@@ -66,4 +66,22 @@ public class Conversation {
         }
         System.out.println("]");
     }
+
+    public static List<String> selectRandomTopics(int numOfTopics, int timeout){
+        //Change enumeration to list of topics
+        Enumeration<String> topicKeysEnum = topicDictionary.keys();
+        List<String> topicNamesList = Collections.list(topicKeysEnum);
+        //Choose random from the list
+        int topicsNamesLength = topicNamesList.size();
+        Random random = new Random();
+        Dictionary<String, List<String>> topicDictionary = Conversation.getTopicDictionary();
+
+        for (int i = 0; i <= numOfTopics; i++){
+            int randomTopicIndex = random.nextInt(topicsNamesLength);
+
+
+        }
+
+        return null;
+    }
 }
