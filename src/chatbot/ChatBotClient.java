@@ -13,31 +13,66 @@ import java.util.*;
 import java.util.List;
 /*
     ToDo:
+    FIX DELAY FOR RANDOM TOPICS
+
     Names of topics are out of order..
 
-    WHERE to define the Initialize Data function
+    WHERE to define the Initialize Data and Send Random Topics... and any functions in Client that should be moved elsewhere
 
     Consider different Topic files for particular different Subjects/Places
-    Consider if user doesn't have certain data in the Settings file. Situations: Empty Tag or incompatible String
-    Consider if user messes up Topics file
+    Allow user to pick a Topic file from inside the program
 
-    Different Bot Modes: Auto Topics, Random Sentences
+    POTENTIAL TEXT PROCESSING ERRORS:
+    Settings File: Consider possible ways to break file
+    Determine how to handle what user is required to configure and what they can just ignore
+    Topics File: Consider possible ways to break the file
 
-    Kill Open Browser after leaving Topic Menu
+    Different Bot Modes: Pick Topic, Auto Topics, Random Sentences
+
+    Closing Running Program:
+    FIX or DELETE related code in the function in Location
+    FIX related code in Client RunMainLoop
+    Kill Open Browser/Program after being done using bot there
  */
 
 //Client for ChatBot
 public class ChatBotClient {
-    //Loads all prerequisite data
-    //(Initializes all the data that is needed for program to function)
+    /*
+    /////
+    /////////FIND WHERE TO DEFINE THIS FUNCTION!!!!/////////////////////////////////////////
+    public static void sendRandomTopics(int numOfTopicsToSend) throws IOException {
+        //Store Total Num of Topic Names
+        int numOfTopicNames = Conversation.getTopicNameList().size();
+
+        //Random object to generate a Random Index to pick a Random Topic Name
+        Random random = new Random();
+
+        //Loop for given Number of Topics to Send
+        for (int i = 1; i <= numOfTopicsToSend; i++) {
+            //Only for the first message, we must first open Youtube in Browser in order to start sending all our messages
+            if (i == 1)
+                Location.openURL1AndClick(Location.getYTLiveURL(), YouTube.getYTXToClick(), YouTube.getYTYToClick(),
+                        YouTube.getYtFastClickDelay(), YouTube.getYtSlowClickDelay());
+
+            //First we get a Random Index to pick a corresponding Topic Name from the list of Names
+            int randomTopicNameIndex = random.nextInt(numOfTopicNames);
+            //Stores the Random Topic Name from the Names Lists chosen corresponding to our Random Index
+            String randomTopicName = Conversation.getTopicNameList().get(randomTopicNameIndex);
+            YouTube.newYTBotTopic(randomTopicName); //Send Messages for the Topic Name we got randomly
+        }
+        Location.switchOpenProgram();
+    }
+     */
+
+    //Loads all prerequisite data (Initializes all the data that is needed for program to function)
     private static void loadData() throws FileNotFoundException {
         Settings.loadCustomSettings();
         Conversation.buildTopicDictionary();
     }
 
-    //Main menu system for bot
+    //Main Menu system for bot
     //Choose a Place to chat, first
-    private static void runMainLoop() throws IOException, AWTException {
+    private static void runMainMenu() throws IOException, AWTException {
         System.out.println("Welcome to the Chat Bot.");
         Scanner console = new Scanner(System.in);
         //Place to Chat Menu
@@ -61,7 +96,9 @@ public class ChatBotClient {
 
         } while (!placeToChat.equals(""));
 
-        Location.myProcess.destroy();
+        //
+        ///////////////////////////////////////
+        //Location.myProcess.destroy();
         /////////////////////////////
         // Taskkill LOOK UP
     }
@@ -83,6 +120,9 @@ public class ChatBotClient {
         } while (!userTopic.equals(""));
     }
 
+
+
+    ////////////////////////////////////////////////////////////// THE HEART OF SENDING MSGS
     //Sends msg to a given Place
     private static void sendMsgToPlace(String userTopic) throws IOException, AWTException {
         List<String> tempTopicNames = Conversation.getTopicNameList();
@@ -120,6 +160,9 @@ public class ChatBotClient {
             /////////////////KILL PROGRAM TOO
         }
     }
+    ////////////////////////////////////////////////////////////////////////////////
+
+
 
     //Decides which Place to go based on user picked
     private static void chooseAPlaceForMsg(String userTopic, Place currentPlace) throws IOException, AWTException {
@@ -160,27 +203,46 @@ public class ChatBotClient {
         Discord.newDiscordBotTopic(userTopic);
     }
 
-    /*
-    //Automatic Mode for random bot messages
-    private static void autoMode(int chatTimeout){
-        List<String> randomTopicList = Conversation.getTopicNameList();
-        Random random = new Random();
-        int randomTopicIndex = random.nextInt(0, randomTopicList.size());
-
-        for ()
-    }
-    */
-
-    //Start main
     public static void main(String[] args) throws IOException, AWTException {
-        //Initialize data that is needed for program to function
+
+        //Initialize data that is needed for program to function2
         loadData();
 
-        //Run Main Menu
-        runMainLoop();
 
-        //////FIX THIS
+        /*
+        //RANDOM TOPICS AUTO MODE
+        //~~~~~~~~~~~~...TEST...~~~~~~~~~~//////
+        System.out.println("TESTING:\nRANDOM TOPICS AUTO MODE...");
+        int numOfTopicsToSend = -1;
+        System.out.print("Choose the Number of Topics you'd like to send: ");
+        Scanner console = new Scanner(System.in);
+        numOfTopicsToSend = console.nextInt();
+
+        sendRandomTopics(numOfTopicsToSend);
+        /////////////////////////END TEST: /nRANDOM TOPICS AUTO //////////////
+
+        //PRIME NUMBERS GENERATOR
+        //////////////////////////////////////////////TESTING!!!///////////
+        System.out.println("TESTING: \nPRIME NUMBERS GENERATOR...");
+        int userMaxNumber = -1;
+        System.out.print("Choose a maximum value (a number) to check for all Prime Numbers less than or equal to your selected value: ");
+        userMaxNumber = console.nextInt();
+
+
+        Location.openURL1AndClick(Location.getYTLiveURL(), YouTube.getYTXToClick(), YouTube.getYTYToClick(),
+                YouTube.getYtFastClickDelay(), YouTube.getYtSlowClickDelay());
+
+        YouTube.newYTPrimeNumbers(userMaxNumber);
+        ///
+        ////////////////////////
+         */
+
+
+        //Run Main Menu
+        runMainMenu();
+
+        ////// FIX THIS ////////////////////////////////////////////~~~~~~~~
         // Location.myProcess.destroy(); //Taskkill LOOK UP ///////////////
-        //
+        ///////////////////~~~~~~~~~~~~~~~~~~~~~~~~////////////////////////////
     }
 }

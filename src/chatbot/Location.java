@@ -16,7 +16,7 @@ public class Location {
     private static String ytLiveURL = "";
     private static Place currentPlace = Place.NONE;
 
-    //Whether or not a program has already been opened from here
+    //Whether or not a program opened from here is still running
     private static boolean programIsOpen = false;
 
     public static void setBrowserLocation(String newBrowserLocation){
@@ -154,32 +154,26 @@ public class Location {
     }
     //
 
-    /*
-    //Does a delay for delayTime (in milliseconds)
-    public static void delayAndShowCountdown(int delayTime){
-        final int MICRO_SECOND = 1000;
-        int delayInSeconds = delayTime / MICRO_SECOND;
-        for (int i = delayInSeconds; i >= 0; i--) {
-            System.out.println( i + "..." );
-            robot.delay(MICRO_SECOND);
-        }
-    }
-     */
-    //
-
     //Navigate to the URL and click the Chat Box
     public static void openURL1AndClick(String URL, int xToClick, int yToClick, int fastDelay, int slowDelay) throws IOException {
         //Runtime needed for opening a program
         final Runtime RUNTIME = Runtime.getRuntime();
-        //Firefox directory
+
+        //Run Browser from Location of Browser.
         String BROWSER_LOCATION = new String(browserLocation);
 
-        //Run Firefox
+
+
+        //////////////////////////////////// TESTING !!!!!!!!!!!!!!!  /////
+        // (myProcess) TESTING: Save Browser Process, TO KILL LATER...!!!!!!!!
+        //TRY TO GRAB THE BROWSER PROCESS
         myProcess = RUNTIME.exec(BROWSER_LOCATION);
+        //////////////////////////////////////////////////////////////
+
+
 
         selectAddressBar();
         urlToAddress(URL);
-        //clickTextBox(xToClick, yToClick);
         clickTextBox(xToClick, yToClick, fastDelay, slowDelay);
     }
 
